@@ -1,9 +1,10 @@
 ---
 title: "Homework1"
 output:
-  pdf_document: default
+  word_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 date: "`r Sys.Date()`"
 ---
 
@@ -16,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 Suppose a lab instrument loses 12% of its value each year. Its current value is 1800$. Compute its value after
 4 years
 
-```{r cars}
+```{r }
 V = 1800*(1-0.12)^4
 V
 ```
