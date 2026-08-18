@@ -1,6 +1,7 @@
 ---
 title: "Homework1"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
 date: "`r Sys.Date()`"
@@ -43,9 +44,22 @@ temperature>=74 # need to change this
 ```
 
 ### Question 4
+Let
+x = 2, 4, 6, 8, 10.
 
+Create this vector in R. Then compute:
+1. $x^2$
+2. $x + 5$,
+3. $\sqrt{x}$,
+4. a data frame with columns x, x_squared, and sqrt_x.
 
 ```{r, echo=FALSE}
-temperature = c(72,75,71,68,70,74,77,73)
+x = c(2,4,6,8,10)
+# x squared
+x_squared = x^2
+# x plus five
+x_plus_five <- x + 5;
+# square root of x
+sqrt_x = sqrt(x)
 
 ```

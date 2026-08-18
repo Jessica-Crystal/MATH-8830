@@ -110,10 +110,10 @@
 \begin{document}
 \maketitle
 
-\subsection{Question 1}\label{question-1}
+\subsubsection{Question 1}\label{question-1}
 
-Suppose a lab instrument loses 12 of its value each year. Its current
-value is 1800. Compute its value after 4 years
+Suppose a lab instrument loses 12\% of its value each year. Its current
+value is 1800\$. Compute its value after 4 years
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -126,13 +126,34 @@ value is 1800. Compute its value after 4 years
 ## [1] 1079.452
 \end{verbatim}
 
-\subsection{Including Plots}\label{including-plots}
+\subsubsection{Question 3}\label{question-3}
 
-You can also embed plots, for example:
+Create a vector of temperatures using c(): 72, 75, 71, 68, 70, 74, 77,
+73. Then use indexing to extract: 1. the first temperature, 2. the last
+three temperatures, 3. all temperatures except the fourth, 4. all
+temperatures at least 74.
 
-\pandocbounded{\includegraphics[keepaspectratio]{HW1_files/HW1_files/figure-latex/pressure-1.pdf}}
+\begin{verbatim}
+## [1] 72
+\end{verbatim}
 
-Note that the \texttt{echo\ =\ FALSE} parameter was added to the code
-chunk to prevent printing of the R code that generated the plot.
+\begin{verbatim}
+## [1] 74 77 73
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 72 75 71 70 74 77 73
+\end{verbatim}
+
+\begin{verbatim}
+## [1] FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE
+\end{verbatim}
+
+\subsubsection{Question 4}\label{question-4}
+
+Let x = 2, 4, 6, 8, 10.
+
+Create this vector in R. Then compute: 1. \(x^2\) 2. \(x + 5\), 3.
+\(\sqrt{x}\), 4. a data frame with columns x, x\_squared, and sqrt\_x.
 
 \end{document}
