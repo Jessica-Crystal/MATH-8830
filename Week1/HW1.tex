@@ -105,25 +105,27 @@
 
 \title{Homework1}
 \author{}
-\date{\vspace{-2.5em}2026-08-17}
+\date{\vspace{-2.5em}2026-08-19}
 
 \begin{document}
 \maketitle
 
-\subsubsection{Question 1}\label{question-1}
-
-Suppose a lab instrument loses 12\% of its value each year. Its current
-value is 1800\$. Compute its value after 4 years
-
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{V }\OtherTok{=} \DecValTok{1800}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\FloatTok{{-}0.12}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{4}
-\NormalTok{V}
+\CommentTok{\#options(tinytex.verbose = TRUE)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1079.452
+
+### Question 1
+
+Suppose a lab instrument loses 12% of its value each year. Its current value is 1800$. Compute its value after
+4 years
+
+
+``` r
+V = 1800*(1-0.12)^4
 \end{verbatim}
 
 \subsubsection{Question 3}\label{question-3}
@@ -155,5 +157,18 @@ Let x = 2, 4, 6, 8, 10.
 
 Create this vector in R. Then compute: 1. \(x^2\) 2. \(x + 5\), 3.
 \(\sqrt{x}\), 4. a data frame with columns x, x\_squared, and sqrt\_x.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{10}\NormalTok{)}
+\CommentTok{\# x squared}
+\NormalTok{x\_squared }\OtherTok{=}\NormalTok{ x}\SpecialCharTok{\^{}}\DecValTok{2}
+\CommentTok{\# x plus five}
+\NormalTok{x\_plus\_five }\OtherTok{\textless{}{-}}\NormalTok{ x }\SpecialCharTok{+} \DecValTok{5}\NormalTok{;}
+\CommentTok{\# square root of x}
+\NormalTok{sqrt\_x }\OtherTok{=} \FunctionTok{sqrt}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
 
 \end{document}

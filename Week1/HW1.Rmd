@@ -1,15 +1,13 @@
 ---
 title: "Homework1"
-output:
-  word_document: default
-  html_document:
-    df_print: paged
-  pdf_document: default
+output: pdf_document
 date: "`r Sys.Date()`"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r}
+#options(tinytex.verbose = TRUE)
+```
+
 ```
 
 ### Question 1
@@ -19,7 +17,7 @@ Suppose a lab instrument loses 12% of its value each year. Its current value is 
 
 ```{r }
 V = 1800*(1-0.12)^4
-V
+
 ```
 
 ### Question 3
@@ -54,7 +52,7 @@ Create this vector in R. Then compute:
 3. $\sqrt{x}$,
 4. a data frame with columns x, x_squared, and sqrt_x.
 
-```{r, echo=FALSE}
+```{r}
 x = c(2,4,6,8,10)
 # x squared
 x_squared = x^2
