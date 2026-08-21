@@ -8,11 +8,10 @@ date: "`r Sys.Date()`"
 #options(tinytex.verbose = TRUE)
 ```
 
-```
 
 ### Question 1
 
-Suppose a lab instrument loses 12% of its value each year. Its current value is 1800$. Compute its value after
+Suppose a lab instrument loses 12 of its value each year. Its current value is 1800. Compute its value after
 4 years
 
 ```{r }
@@ -21,7 +20,7 @@ V = 1800*(1-0.12)^4
 ```
 
 ### Question 3
-Create a vector of temperatures using c():
+Create a vector of temperatures using :
 72, 75, 71, 68, 70, 74, 77, 73.
 Then use indexing to extract:
 1. the first temperature,
@@ -47,10 +46,10 @@ Let
 x = 2, 4, 6, 8, 10.
 
 Create this vector in R. Then compute:
-1. $x^2$
-2. $x + 5$,
-3. $\sqrt{x}$,
-4. a data frame with columns x, x_squared, and sqrt_x.
+$x^2$
+$x + 5$,
+$\sqrt{x}$,
+a data frame with columns x, .
 
 ```{r}
 x = c(2,4,6,8,10)
