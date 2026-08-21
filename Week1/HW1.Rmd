@@ -16,6 +16,7 @@ Suppose a lab instrument loses 12 of its value each year. Its current value is 1
 
 ```{r }
 V = 1800*(1-0.12)^4
+V
 
 ```
 
