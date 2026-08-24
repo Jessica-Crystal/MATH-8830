@@ -50,6 +50,13 @@ cbind(cumsum(z), 1:n)
 plot(cumsum(z)/ind)
 
 
+n <- 10
+z <- runif(n)
+ind <- 1:n
+cbind(cumsum(z), 1:n)
+plot(cumsum(z)/ind)
+
+
 # write your own function
 final <- function(x){
   homework <- x[1]
