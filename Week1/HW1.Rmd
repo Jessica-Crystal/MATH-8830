@@ -1,64 +1,96 @@
 ---
-title: "Homework1"
+title: "Homework I"
 output: pdf_document
-date: "`r Sys.Date()`"
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Instructions
+
+Show your code and the resulting output. Please ensure that your submission is clearly organized, readable, and easy to follow.
+
+
+## Question 1: 
+
+Suppose a lab instrument loses 12% of its value each year. Its current value is
+\$1800. Compute its value after 4 years:
+
+\[
+V = 1800(1 - 0.12)^4.
+\]
+
 ```{r}
-#options(tinytex.verbose = TRUE)
+V = 1800*(1 -0.12)^4
+cat(sprintf("The value after 4 years is %.5f", V))
 ```
 
 
-### Question 1
+## Question 2: 
 
-Suppose a lab instrument loses 12 of its value each year. Its current value is 1800. Compute its value after
-4 years
+A medication dose is calculated from a patient's weight using
 
-```{r }
-V = 1800*(1-0.12)^4
-V
+\[
+\text{dose} = 0.8 \times \text{weight in kg}.
+\]
 
+Create R objects named `weight_lb`, `kg_per_lb`, and `dose_rate`.
+
+Use these values:
+
+\[
+\text{weight\_lb} = 165, \quad \text{kg\_per\_lb} = 0.453592, \quad \text{dose\_rate} = 0.8.
+\]
+
+Convert the weight to kilograms, compute the dose, and print the dose rounded to one decimal place.
+
+```{r}
+weight_lb <- 165
+kg_per_lb <- 0.453592
+dose_rate <- 0.8
+weight_in_kg <- weight_lb*kg_per_lb
+dose <- dose_rate*weight_in_kg
+cat(sprintf("The dose rate is $%.1f", dose))
 ```
 
-### Question 3
-Create a vector of temperatures using :
+
+## Question 3
+
+Create a vector of temperatures using `c()`:
+
+\[
 72, 75, 71, 68, 70, 74, 77, 73.
+\]
+
 Then use indexing to extract:
+
 1. the first temperature,
 2. the last three temperatures,
 3. all temperatures except the fourth,
 4. all temperatures at least 74.
 
-```{r, echo=FALSE}
-temperature = c(72,75,71,68,70,74,77,73)
-# the first temperature
-temperature[c(1)]
-# the last three temperature
-temperature[c(6:8)]
-# all temperatures except the fourth
-temperature[c(-4)]
-# all temperature at least 74
-temperature>=74 # need to change this
-
+```{r}
+temperatures <- c(72, 75, 71, 68, 70, 74, 77, 73)
+cat(sprintf("The first temperature is %d", temperatures[c(1)]))
+cat(sprintf("The last three temperatures are %d", temperatures[c(6:8)]))
 ```
 
-### Question 4
+
+## Question 4
+
 Let
+
+\[
 x = 2, 4, 6, 8, 10.
+\]
 
-Create this vector in R. Then compute:
-$x^2$
-$x + 5$,
-$\sqrt{x}$,
-a data frame with columns x, .
+Create this vector. Then compute:
 
+1. \(x^2\),
+2. \(x + 5\),
+3. \(\sqrt{x}\),
+4. a matrix with columns `x`, `x_squared`, and `sqrt_x`.
 ```{r}
-x = c(2,4,6,8,10)
-# x squared
-x_squared = x^2
-# x plus five
-x_plus_five <- x + 5;
-# square root of x
-sqrt_x = sqrt(x)
-
+# Your code here
 ```

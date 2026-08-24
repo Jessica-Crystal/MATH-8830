@@ -113,5 +113,18 @@ x%*%t(x) #multiplication
 rbind(5:9, 12,(9:5)^2, c(2,8,4,7,3))
 
 
+##########################################################################
 
+x = "GeeksforGeeks" # string
+x1 = 255            # integer
+x2 = 23.14          # float 
+
+# string print
+sprintf("%s is best", x)
+
+# integer print
+sprintf("%d is integer", x1)
+
+# float print
+sprintf("%f is float", x2)
 
