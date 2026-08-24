@@ -73,7 +73,9 @@ Then use indexing to extract:
 ```{r}
 temperatures <- c(72, 75, 71, 68, 70, 74, 77, 73)
 cat(sprintf("The first temperature is %d", temperatures[c(1)]))
-cat(sprintf("The last three temperatures are %d", temperatures[c(6:8)]))
+cat("\n The last three temperatures are ", temperatures[c(6:8)])
+cat("\n All temperature except the fourth  ", temperatures[c(-4)])
+cat("\n All temperatures at least 74 ", temperatures>=74)
 ```
 
 
@@ -92,5 +94,17 @@ Create this vector. Then compute:
 3. \(\sqrt{x}\),
 4. a matrix with columns `x`, `x_squared`, and `sqrt_x`.
 ```{r}
-# Your code here
+x <- c(2,4,6,8,10)
+x_squared <- x^2
+cat("\n The square of x ", x_squared)
+
+x_plus_5 <- x + 5
+cat("x plus five is ", x_plus_5)
+
+sqrt_x <- sqrt(x)
+cat("\n The square root of x", sqrt_x)
+
+mat_x <- cbind(x, x_squared, sqrt_x)
+cat("\n The matrix of x", mat_x)
+print(mat_x)
 ```
