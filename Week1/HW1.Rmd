@@ -1,6 +1,7 @@
 ---
 title: "Homework I"
 output: pdf_document
+date: "r SysDate()"
 ---
 
 ```{r setup, include=FALSE}
@@ -105,6 +106,6 @@ sqrt_x <- sqrt(x)
 cat("\n The square root of x", sqrt_x)
 
 mat_x <- cbind(x, x_squared, sqrt_x)
-cat("\n The matrix of x", mat_x)
+#cat("\n The matrix of x", mat_x)
 print(mat_x)
 ```
