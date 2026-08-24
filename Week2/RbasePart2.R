@@ -48,3 +48,18 @@ z <- runif(n)
 ind <- 1:n
 cbind(cumsum(z), 1:n)
 plot(cumsum(z)/ind)
+
+
+# write your own function
+final <- function(x){
+  homework <- x[1]
+  exam <- x[2]
+  project <- x[3]
+  final <- homework*0.2 + exam*0.5 + project*0.3
+  return(final)
+}
+
+final(c(50,30,10))
+scores <- matrix(runif(100*3, 50, 100), 100, 3)
+scores
+apply(scores, 1, final)
