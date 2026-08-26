@@ -70,3 +70,117 @@ final(c(50,30,10))
 scores <- matrix(runif(100*3, 50, 100), 100, 3)
 scores
 apply(scores, 1, final)
+
+# 26 Aout 2026
+
+final <- function(x){
+  #############################
+  # information about the output
+  # input:
+  # output:
+  homework <- x[1]
+  exam <- x[2]
+  project <- x[3]
+  final <- homework*0.2 + exam*0.5 + project*0.3
+  return(final)
+}
+# my code
+mean_absolute_deviation <- function(x, n){
+  # input: x is a vector
+  # n is the size of the vector
+  # output:
+  mean_x <- mean(x)
+  results <- 1/n*sum(abs(x - mean_x))
+  return(results)
+}
+
+
+# teacher's code
+x <- runif(5)
+#
+mean(abs(x -mean(x)))
+# work
+mad <- function(x){
+  mean(abs(x -mean(x)))
+}
+
+# work
+mad1 <- function(x){
+ mad <- mean(abs(x -mean(x)))
+ return(mad)
+}
+
+# doesn't return anything
+mad2 <- function(x){
+  mad <- mean(abs(x -mean(x)))
+}
+mad(x)
+
+
+## the for and the while loop
+# compute the first 10 elements in the fibonacci sequence
+Fib <- c(1,1) # inital value of the fibonacci
+for(i in 3:10){
+  Fib[i] <- Fib[i-1] + Fib[i-2]
+}
+Fib
+
+
+# Generate the Fibonacci sequence up to the largest term greater than 50
+Fib <- c(1,1)
+i <- 2
+while(Fib[i]<50){
+  Fib[i+1] <- Fib[i] + Fib[i-1]
+  i <- i + 1
+}
+Fib
+ 
+# Find the prime numbers
+# some preparation
+a <- 1
+b <- 1.1
+d <- "Qiong"
+g <- TRUE # AUTOMATICALLY CONVERT TO 1 SO U CAN MULTIPLY BY A NUMBER
+a <- 1:4
+g <- c(TRUE, FALSE, FALSE, TRUE)
+mean(g)
+a[g] # ?? RETURN THE TRUE POSITION
+which(g)
+if(2>1){
+  
+  print("correct")
+  
+} 
+
+# find the prime numbers for up to 100
+N <- 100
+prime <- c(FALSE, rep(TRUE, N-1))
+prime
+for(n in 2:sqrt(N)){
+  if(prime[n]){
+    for(s in 2:(N/n)){
+      prime[s*n] <- FALSE
+    }
+  }
+  
+}
+prime
+which(prime)
+# write a function called FindPrime
+# input: N positive integer
+# output: all the prime Numbers less than or equal to N
+
+FindPrime <- function(N){
+  prime <- c(FALSE, rep(TRUE, N-1))
+  for(n in 2:sqrt(N)){
+    if(prime[n]){
+      for(s in 2:(N/n)){
+        prime[s*n] <- FALSE
+      }
+    }
+    
+  }
+  return(prime)
+}
+res <- FindPrime(20)
+which(res)
