@@ -1,0 +1,94 @@
+---
+title: "Homework II"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Instructions
+
+Show your code and the resulting output. Please ensure that your submission is clearly organized, readable, and easy to follow.
+
+
+## Question 1: 
+
+Generate a matrix of size $n\times n$ with the $ij$-th entry 
+\[
+\exp(-\theta(i-j)^2)
+\]
+Specify $n=10$ and $\theta=0.5$.
+
+```{r}
+theta <- 0.5
+n <- 10
+i <- matrix(rep(0:(n-1), each=n), n, n) # replicate from zero to 9
+j <- matrix(rep(0:(n-1),n), n, n)
+exp(-theta*(i-j)^2)
+
+```
+
+
+
+
+## Question 2: 
+
+Use for loop and if statement to develop a function that can sort a vector of entries from the smallest to the largest. For example, you can implement the bubble sort algorithm. Bubble sort repeatedly looks at two neighboring items.
+
+Bubble sort compares neighboring items from left to right. If the item on the left is larger than the item on the right, the two items are swapped. After the first pass, the largest unsorted item moves to the end. During the second pass, the algorithm starts again from the left but stops before the last sorted item. It repeats this process until no swaps are needed. 
+
+The algorithm repeats this process until it completes a pass without making any swaps. At that point, the items are in ascending order.
+
+For example, To sort 3, 7, 0, -5 in ascending order:
+
+First pass
+
+Compare 3 and 7: no swap.
+
+Compare 7 and 0: swap and result 3, 0, 7, -5
+
+Compare 7 and -5: swap and result 3, 0, -5, 7
+
+Second pass
+
+Compare 3 and 0: swap and result 0, 3, -5, 7
+
+Compare 3 and -5: swap and result 0, -5, 3, 7
+
+Third pass
+
+Compare 0 and -5: swap and result -5, 0, 3, 7
+Compare 0 and 3: no swap.
+
+The sorted vector is:
+
+-5, 0, 3, 7
+
+
+Use your function to order the following vectors
+```{r}
+c(5, 8, 9, 3, 2)
+c(4, 1, 8, 0, -3)
+```
+
+
+```{r}
+sort_vector <- function(x){
+  
+}
+```
+
+## Question 3
+
+Use the ``Bschool.csv'' dataset to find the answers of the following question within this dataset.
+
+1. Which professor rank (i.e., associate, assistant, or professor) has the highest average teaching evaluation score?
+
+2. What is the number of female associate professors? 
+
+3. Is median teaching evaluation score in fall semester usually higher than that in spring semester?
+
+```{r}
+# Your code here
+```
