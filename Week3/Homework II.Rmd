@@ -75,7 +75,7 @@ c(4, 1, 8, 0, -3)
 
 ```{r}
 sort_vector <- function(x){
-  
+  # look at bubble sort algorithm on youtube
 }
 ```
 
@@ -90,5 +90,5 @@ Use the ``Bschool.csv'' dataset to find the answers of the following question wi
 3. Is median teaching evaluation score in fall semester usually higher than that in spring semester?
 
 ```{r}
-# Your code here
+Bschool <- read.csv
 ```

@@ -185,7 +185,4 @@ FindPrime <- function(N){
 res <- FindPrime(20)
 which(res)
 
-################################################################
-
-#28th of August 2026
 
