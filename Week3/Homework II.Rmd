@@ -68,14 +68,33 @@ The sorted vector is:
 
 Use your function to order the following vectors
 ```{r}
-c(5, 8, 9, 3, 2)
-c(4, 1, 8, 0, -3)
+x <- c(5, 8, 9, 3, 2)
+y <- c(4, 1, 8, 0, -3)
+
 ```
 
 
 ```{r}
-sort_vector <- function(x){
+# this is a function that take a vector x
+library('permutations')
+bubble_sort <- function(x){
   # look at bubble sort algorithm on youtube
+  
+  n <- length(x) # define the length of the vector
+
+  
+  for (i in 1:n){ # for i from 1 to n
+    swapped <- FALSE
+    if (x[i]> x[i + 1]){ # if the the number before is bigger, then swap
+      swap(x[i], x[i + 1])
+    }
+    else{
+      swapped <- TRUE
+    }
+  }
+  
+  return(swapped)
+  
 }
 ```
 
@@ -88,7 +107,21 @@ Use the ``Bschool.csv'' dataset to find the answers of the following question wi
 2. What is the number of female associate professors? 
 
 3. Is median teaching evaluation score in fall semester usually higher than that in spring semester?
+```{r}
+for(i in 1:5){
+  print(i)
+}
+
+```
+
 
 ```{r}
-Bschool <- read.csv
+f <- file.choose()
+data <- read.csv(f)
+Bschool <- data
+
+# 1. Professor rank
+Bschool[Bschool$title=="AssistantProfessor" &
+          "AssociateProfessor"& "Professor"]
+
 ```
