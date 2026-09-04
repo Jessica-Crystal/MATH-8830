@@ -18,6 +18,6 @@ cat("The number of female associates professor:", female_associate_professors)
 # No, the median teaching evaluation score in fall semester is lower than the spring semester
 eva_fall <- median(Bschool$score[Bschool$semester == "fall"])
 eva_spring <- median(Bschool$score[Bschool$semester == "spring"])
-eva_fall >=  # this return FALSE, so the answer is nO§
+eva_fall >= eva_spring # this return FALSE, so the answer is NO
 cat("The median score that is high is in the spring", eva_spring)
 
