@@ -101,7 +101,7 @@ means <- cbind(lhs.mean, iid.mean)
  mean(B^2 - 4*A*C>0)
  
  ## Exercise: simulation example: question like this on the Lab Quiz
- 
+ # my code
  set.seed(10)
  n <- 10
  A <- runif(n)
