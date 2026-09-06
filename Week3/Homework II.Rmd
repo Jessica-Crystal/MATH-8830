@@ -108,15 +108,33 @@ cat("\nThe sorted vector for y is ", bbs_y)
 Use the ``Bschool.csv'' dataset to find the answers of the following question within this dataset.
 
 1. Which professor rank (i.e., associate, assistant, or professor) has the highest average teaching evaluation score?
+```{r}
+
+Bschool <- read.csv("C:/Users/FRT/Downloads/Fall-2026/MATH-8830/Bschool.csv")
+mean_score <- tapply(Bschool$score, Bschool$title, mean)
+highest <- max(mean_score)
+print(mean_score)
+cat("The Professor has the higher rank with", highest)
+```
+
 
 2. What is the number of female associate professors? 
 
+```{r}
+  
+female_associate_professors <- sum(Bschool$title =="Associate Professor" &
+                                     Bschool$gender == "f")
+
+cat("\n The number of female associates professor:", female_associate_professors)
+```
+
 3. Is median teaching evaluation score in fall semester usually higher than that in spring semester?
 
-
-
-
 ```{r}
-# My Rmarkdown doesn't work for loading csv data, so please look at the R file for this quesition
+
+eva_fall <- median(Bschool$score[Bschool$semester == "fall"])
+eva_spring <- median(Bschool$score[Bschool$semester == "spring"])
+eva_fall >= eva_spring  # this return FALSE, so the answer is NO
+#cat("\n The median score that is high is in the spring", eva_spring)
 
 ```
