@@ -1,0 +1,162 @@
+---
+title: "Homework III"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Instructions
+
+Show your code and the resulting output. Please ensure that your submission is clearly organized, readable, and easy to follow.
+
+
+## Question 1: 
+
+Use Latin Hypercube sample and independent and identically distributed (iid) sample from U(0,1) to approximate the integration of
+\[
+f(x_1, x_2)=\log\left(1/\sqrt{x_1}+1/\sqrt{x_2}\right)
+\]
+on $[0,1]^2$. Note: Let
+\[
+\mu=\int^1_0\int^1_0 f(x_1, x_2) dx_1 dx_2=1.25
+\]
+Compare the estimates and provide brief comments.
+
+Hints: You may follow the steps below:
+
+1. Develop a function that can generate two dimensional Latin Hypercube samples.
+```{r}
+two_dim_latin_hypercube <- function(n){
+  x <- sample(1:n)
+  x <- x - runif(n)
+  x1 <- x/n 
+  x2 <- x/n
+  cbind(x1, x2) # the value of x1 and x2 are the same here
+}
+
+two_dim_latin_hypercube1 <- function(n){
+  x1 <- sample(1:n) - runif(n) # this gives big numbers
+  x2 <- sample(1:n) - runif(n)
+  x1 <- x1/n
+  x2 <- x2/n
+  cbind(x1, x2)
+}
+
+two_dim_latin_hypercube1(10)
+ 
+```
+
+
+2. Develop a function that can generate two dimensional iid uniform samples.
+```{r}
+# a function that generate two dimensional iid uniform samples
+iid_unif_samples <- function(n){
+  x1 <- runif(n)
+  x2 <- runif(n)
+  cbind(x1, x2)
+}
+iid_unif_samples(10)
+```
+
+3. Develop a function that can approximate $\int^1_0\int^1_0 f(x_1, x_2) dx_1 dx_2$ using a given sample.
+```{r}
+two.dim.log.fun <- function(x1, x2){
+  
+  log(1/sqrt(x1) + 1/sqrt(x2))
+}
+
+approx.int.log.fun <- function(x1, x2){
+  
+}
+
+```
+
+
+4. plug in the output of the function in 1  to the function you developed in 3. You can get an approximation of $\int^1_0\int^1_0 f(x_1, x_2) dx_1 dx_2$ using Latin hypercube samples.
+
+5. plug in the output of function in 2
+to the function in 3.  You can get an approximation of $\int^1_0\int^1_0 f(x_1, x_2) dx_1 dx_2$ using iid uniform samples. 
+
+6. How far is your approximation from the true value? Which method (lhs and iid) is closer to the true value?
+If you repeat 4 and 5, will the result change?
+
+7. Replicate 4 and 5 for nrep times. 
+You will have nrep approximations from each method. Let
+\[
+\hat\mu^{lhs}_1, \ldots, \hat\mu^{lhs}_{nrep}
+\]
+and
+\[
+\hat\mu^{iid}_1, \ldots, \hat\mu^{iid}_{nrep}
+\]
+be the resulting approximations. Compute the sample bias:
+\[
+\frac{1}{nrep}\sum^{nrep}_{i=1}\hat\mu^{iid}_i-\mu
+\]
+\[
+\frac{1}{nrep}\sum^{nrep}_{i=1}\hat\mu^{lhs}_i-\mu
+\]
+the sample variances:
+\[
+\frac{1}{nrep-1}\sum^{nrep}_{i=1}\left(\hat\mu^{iid}_i-\frac{1}{nrep}\sum^{nrep}_{j=1}\hat\mu^{iid}_j\right)^2
+\]
+\[
+\frac{1}{nrep-1}\sum^{nrep}_{i=1}\left(\hat\mu^{lhs}_i-\frac{1}{nrep}\sum^{nrep}_{j=1}\hat\mu^{lhs}_j\right)^2
+\]
+and the mean squared errors:
+\[
+\frac{1}{nrep}\sum^{nrep}_{i=1}\left(\hat\mu^{iid}_i-\mu\right)^2
+\]
+\[
+\frac{1}{nrep}\sum^{nrep}_{i=1}\left(\hat\mu^{lhs}_i-\mu\right)^2
+\]
+
+8. Try different $n$. Comment on how is the result change over $n$.
+
+```{r}
+# Your code here
+```
+
+
+
+
+
+
+## Question 2: 
+Use simulation to estimate the 90th
+percentile of the distance between two points (say, $(x_1, y_1)$ and $(x_2, y_2)$ )chosen at random in the interior of a unit square (i.e., $[0,1]^2$).
+
+```{r}
+# Your code here
+```
+
+
+## Question 3:
+
+Use the ``Bschool.csv'' dataset to find the answers of the following question within this dataset. Note: Use the pipe operator and functions in tidyverse packages this time. 
+
+1. Which professor rank (i.e., associate, assistant, or professor) has the highest average teaching evaluation score?
+```{r}
+bschool <- read.csv("C:/Users/FRT/Downloads/Fall-2026/MATH-8830/Dataset/Bschool.csv")
+head(bschool)
+```
+
+
+```{r}
+library('dplyr')
+mean_score <- tapply(Bschool$score, Bschool$title, mean)
+highest <- max(mean_score)
+cat("The professor who has the higher rank", highest)
+bschool |> filter(title=="Professor")|>
+          mean(score)
+```
+
+2. What is the number of female associate professors? 
+
+3. Is median teaching evaluation score in fall semester  higher than that in spring semester?
+
+```{r}
+
+```

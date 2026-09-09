@@ -4,7 +4,7 @@
 # filter, arrange, mutate, select, summarize
 
 library('tidyverse')
-conflicts_prefer(dplyr::filter()) # avoid conflict from the data.
+# this doesn' work anymore conflicts_prefer(dplyr::filter()) # avoid conflict from the data.
 data <- read.csv("Dataset\\Bschool.csv")
 
 # filter the data 
@@ -21,17 +21,21 @@ summarize(group_by(data, student), mean(score))
 # pipe operator : always starting with a dataset
 # %>% 
 # |> works for 4.1.0
- data |> filter(student=="MBA")|> 
+data |> dplyr::filter(student=="MBA")|> 
    arrange(score, size)|> 
-   mutate(smallsize = 1*(size<30))
+   mutate(smallsize = 1*(size<30)) # I have a problem with filter function again this time:!!
  
- data |> group_by(student, semester)|> 
+data |> group_by(student, semester)|> 
    summarize(
      mean.score = mean(score),
      median.score = median(score)
-     )
+  )
  
  # question:
+data |> filter(title == "Associate Professor" & gender == "f") |>
+  summarize(mean.score = mean(score))
+data |> filter(title == "Professor" & gender == "f")|>
+  summarize(mean(score))
  data |> filter(title == "Associate Professor" , gender == "f" )|>
    mutate(number = sum())
 
