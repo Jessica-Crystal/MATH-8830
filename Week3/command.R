@@ -5,3 +5,7 @@
 ###  unlink(system.file("libs", "dplyr", package = "dplyr"), recursive = TRUE)
 
 ## How to commit distance
+# git status
+# git add .
+# git commit -m "Add your message"
+# git push origin main (to push to github)
