@@ -122,3 +122,13 @@ results2 |> ggplot(aes(x = method, y=est - true_mean)) +
 results2 |> ggplot(aes(x=rep.id, y=est, color=method)) +
   geom_point()
 
+library(nycflights13)
+flights
+weather
+airlines
+planes
+airports
+# relationship between the dataset
+# missing values
+# time and dates
+# multiples date
