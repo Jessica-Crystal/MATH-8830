@@ -1,0 +1,40 @@
+---
+title: "Homework 4"
+author: "Jessica"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## The air quality dataset
+
+
+```{r }
+# load the data: 
+aqi_data <- load("C:/Users/FRT/Downloads/Fall-2026/MATH-8830/Dataset/pm.Rdata")
+cat("The number of row in the data05", nrow(data05))
+cat("The number of row in the data14", nrow(data14))
+cat("The number of column in the data05", ncol(data05))
+cat("The number of column in the data14", ncol(data14))
+
+```
+
+```{r}
+library(tidyverse)
+data05 |> group_by(AQI) |> ggplot(aes(x = Date.Local, y=AQI)) +
+  geom_line()
+```
+
+
+## Movie Dataset 
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
