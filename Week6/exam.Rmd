@@ -1,0 +1,230 @@
+---
+title: "Exams Preparation"
+author: "Jessica"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+table1
+table2
+table3
+table2 |>
+  spread(
+    type, count
+  )
+
+table1 |>
+  gather(
+    type, count, -country, -year
+  )
+
+
+# Question
+# function to generate 1D latin hypercube sample
+lhs1 <- function(n) {
+  x <- sample(1:n)
+  x <- x-runif(n)
+  x <- x/n
+  return(x)
+}
+
+
+int.approx <- function(u) {
+  mean(sin(u))
+}
+
+
+## The simulation code
+set.seed(10)
+n <- 10
+nrep <- 1000
+lhs.mean <- replicate(nrep, int.approx(lhs1(n)))
+iid.mean <- apply(matrix(runif(n*nrep), nrep, n), 1,
+                  int.approx)
+
+
+cbind(lhs.mean, iid.mean)
+
+results1 <- tibble(
+  rep.id = 1:nrep,
+  lhs = lhs.mean,
+  iid = iid.mean
+)
+
+
+results2 <- results1 |>
+  gather(
+    method, est, -rep.id
+  )
+
+
+true_mean <- 1-cos(1)
+results2 |>
+  group_by(method) |>
+  summarize(
+    bias = mean(est)-true_mean,
+    var = var(est),
+    mse = var(est)+bias^2
+  )
+
+
+results2 |>
+  ggplot(aes(x=method, y=est-true_mean)) + 
+  geom_boxplot()+
+  ylab("bias")
+```
+
+## Simulation
+```{r}
+## Lab Quiz 2
+
+# What is the mean of a normal random with mean 0, sd=1
+x <- rnorm(100)
+mean(x)
+# what is the probability of X<3
+pnorm(3)
+mean(x<3)
+
+# What is mean of Z=X1*X2, both of them are standard normal random
+# variables, they are independent
+nrep <- 100
+x <- matrix(rnorm(2*nrep), nrep, 2)
+z <- x[,1]*x[,2]
+mean(z)
+quantile(z, prob=0.9)
+
+
+d <- 10
+nrep <- 1000
+prods <- replicate(nrep, 
+                   prod(runif(d))
+                   )
+quantile(prods, prob=0.9)
+
+```
+
+
+## Data Analysis
+
+
+
+```{r}
+library(tidyverse)
+bschool <- read.csv("C://Users//FRT//Downloads//Fall-2026//MATH-8830//Dataset//Bschool.csv")
+# some useful function
+filter(bschool, student == "MBA") # filter the student who does the MBA class
+arrange(bschool, size, score) # orders the rows of the data
+select(bschool, semester, size, score) # select a specific column
+mutate(bschool, smallSize = 1*(size<30)) # create a new column that have a small size lesser
+summarize(group_by(bschool, student), mean(score))
+
+```
+
+## Using pipe operators
+
+
+```{r}
+bschool |> filter(student == "MBA") # using the filter function
+
+bschool |> mutate(
+  smallsize = 1*(size<10),
+  largesize = 1*(size>100)# using the mutate function
+)
+
+# summarize
+bschool |> 
+  group_by(gender, student)|>
+  summarize(
+    mean_score = mean(score),
+    sd_score = sd(score),
+    n = length(score)
+  )
+
+# group_by function: how many MBA courses were taught by female associate professor
+# average score for graduate courses taught by male assistant professor
+bschool |> group_by(gender, student, title)|> count()
+
+# rank has the average highest score
+bschool |> filter(student == "MBA") |> 
+  group_by(title)|>
+  summarize(
+    mean_score = mean(score)
+  )
+
+```
+ ## Graph with basic R functions
+ 
+```{r}
+cols <- c("red", "green", "blue")
+plot(Petal.Width~Petal.Length, data = iris,
+     col = cols[as.numeric(Species)])
+#legend("topleft", levels(iris$Species), col=cols, pch=1)
+```
+```{r}
+#GGPLOT
+p1 <- bschool |> 
+  ggplot(aes(x = score))
+p1 + geom_histogram()
+p1 + geom_density()
+
+```
+```{r}
+# qualitative
+p2 <- bschool |> 
+  mutate(
+    gender = ifelse(gender == "f",
+                    "female", "male")
+  ) |> 
+  ggplot(aes(x  = gender))
+p2 + geom_bar()
+```
+```{r}
+# Quantitative vs Qualitative
+p12 <- ggplot(bschool, aes(x=score))
+p12 + geom_histogram() + 
+  facet_grid(student~.)
+
+```
+```{r}
+
+p12 + geom_density() + 
+  facet_grid(student~.)
+```
+```{r}
+p12 + 
+  geom_histogram(aes(color=student))
+
+```
+```{r}
+p12 + geom_density(aes(color=student, fill=student), alpha=0.5)
+p12 <- p12 + geom_boxplot(aes(y=student))
+```
+ 
+```{r}
+# qualitative vs qualitative
+bschool |> 
+  ggplot(aes(x=title, fill=gender)) +
+  geom_bar(position="dodge")
+```
+```{r}
+bschool |> group_by(title, gender) |>
+  summarize(
+    freq = n()/nrow(bschool)
+  )|> 
+  ggplot(aes(x=title, y=gender))+
+  geom_tile(aes(fill=freq))
+```
+```{r}
+p22 <- bschool |> 
+  ggplot(aes(x=size, y=score)) +
+  geom_point()+
+  geom_smooth(method = "lm")
+p22
+```
+

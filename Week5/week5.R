@@ -245,3 +245,28 @@ time_delay |>
     aes(x = weekday, y=mean_delay)
   ) + 
   geom_bar(stat = "identity")
+ ##################################################
+# multiple table 
+glimpse(flights)
+glimpse(weather)
+
+##
+x <- tibble(
+  id = c(1,2,3),
+  stat = c(55, 90,70)
+)
+
+y <- tibble(
+  id = c(1,2,4),
+  alg = c(58, 90,96)
+)
+# combined the data: inner_join
+inner_join(x,y)
+left_join(x, y)
+right_join(x,y)
+full_join(x,y)
+anti_join(x,y)
+
+flights
+airports
+left_join(flights, airports, join_by(origin==faa))
