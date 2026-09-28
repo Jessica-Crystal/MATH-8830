@@ -64,3 +64,35 @@ flights |> filter(
 
 # COMPARE ARR_DELAY OF OLD PLANES AND NEW PLANES
 # WHICH FLIGHT ROUTE HAS THE HIGHST AVERAGE ARRIVAL DELAY
+
+## 25 september 2026
+flights |> 
+  left_join(planes, by="tailnum")|>
+  mutate(
+    new = 1*(year.y>=2000))|>
+  group_by(
+    carrier, new
+  )|>
+  summarize(
+    median_delay =median(arr_delay, na.rm=TRUE)
+    
+  )|>
+  filter(
+    !is.na(new)
+  )|>
+  spread(
+    new, median_delay
+  )
+
+#Q2
+flights |>
+  filter(
+    !is.na(arr_delay)
+  )|>
+  group_by(origin, dest) |>
+  summarize(
+    average_arr_delay = mean(arr_delay),
+    number_of_flights = n(),
+    .groups = "drop"
+  )|>
+  slice(which.max(average_arr_delay))
