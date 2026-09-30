@@ -21,20 +21,126 @@ cat("The number of column in the data05", ncol(data05))
 cat("The number of column in the data14", ncol(data14))
 
 ```
+## Question 1
+
 
 ```{r}
+#
 library(tidyverse)
-data05 |> group_by(AQI) |> ggplot(aes(x = Date.Local, y=AQI)) +
-  geom_line()
+library(patchwork)
+
+plot1 <- data05 |> group_by(Date.Local)|> 
+  summarize(average = mean(AQI, na.rm=TRUE),
+            .groups = "drop_last") |>
+   mutate(date = update(ymd(as.character(Date.Local)), year=2026))
+
+plot2 <- data14 |> group_by(Date.Local) |>
+  summarize(average = mean(AQI, na.rm=TRUE),
+            .groups = "drop_last") |>
+  mutate(date = update(ymd(as.character(Date.Local)), year=2026))
+
+plot1 |>
+  ggplot() +
+  geom_line(aes(x=date, y=average)) +
+  # scale_x_log10() + 
+  labs(title = "average")
+
+
+plot2 |>
+  ggplot() +
+  geom_line(aes(x=date, y=average)) +
+  # scale_x_log10() + 
+  labs(title = "average")
+
+
+p <- ggplot() +
+      # data05 plot
+      geom_line(data=plot1, aes(x=date, y=average, color="2005")) + 
+      # data14 plot
+      geom_line(data=plot2, aes(x=date, y=average, color="2014"))
+  
+
+ 
+
+p
+```
+## Question 2
+
+```{r}
+# scatter plots by using x-axis 
+p1 <- data05 |> group_by(Latitude, Longitude)|>
+  mutate(location = 1*(AQI>50))
+
+p2 <- data14 |> group_by(Latitude, Longitude)|>
+  mutate(location = 1*(AQI>50))
+
+
+plot1 <- p1 |> ggplot(aes(x=Latitude, y=Longitude)) + 
+  geom_point(aes(color=factor(location)))
+
+plot2 <- p2 |> ggplot(aes(Latitude, y=Longitude))+
+  geom_point(aes(color=factor(location)))
+
+library(gridExtra)
+
+grid.arrange(plot1, plot2)
+  
 ```
 
 
 ## Movie Dataset 
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+
+```{r}
+library(tidyverse)
+movie_data <- read.delim("C:/Users/FRT/Downloads/Fall-2026/MATH-8830/Dataset/movies.tab")
+
+p11 <- movie_data |> ggplot(aes(length)) + geom_histogram() # with outlier
+
+
+percentile_95 <- quantile(movie_data$length, prob=0.95, na.rm=TRUE)
+
+data1 <- movie_data |> filter(
+  !is.na(length),
+  length <= percentile_95
+)
+p12 <- data1 |> ggplot(aes(length)) + geom_histogram(bins=30)
+grid.arrange(p11, p12, ncol=2 ) 
+
+```
+### Question 4
+
+A bar plot to show the frequencies of short movies and the long movies.
+
+```{r}
+movie_data |> mutate(
+  movie = ifelse(Short==1, "Yes", "No")
+)|> ggplot(aes(x=movie, color=factor(Short)))+
+  geom_bar()
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Question 5
+
+```{r}
+# relationship between rating and budget
+
+movie_data |> filter(Short==0 & year>=2000) |>
+  ggplot(aes(x=budget, y=rating))+
+  geom_point()+
+  scale_x_log10()
+
+
+```
+
+```{r}
+movie_genre <- c("Action", "Animation", "Comedy", "Drama", "Documentary", "Romance")
+movie_data |> filter(Short==0 & year>=2000) |>
+  pivot_longer(cols = c("Action", "Animation", "Comedy", "Drama", "Documentary", "Romance"), names_to = "genre")|> filter(value==1)|>
+  ggplot(aes(x=budget, y=rating))+
+  geom_point()+
+  facet_grid(.~genre)+
+  scale_x_log10()
+```
+
