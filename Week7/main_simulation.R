@@ -1,8 +1,8 @@
 # Independent two-sample simulation study
 library(tidyverse)
-source("independent_two_sample_analysis.R")
+source("Week7/independent_two_sample_analysis.R")
 
-repetitions <- 1000
+repetitions <- 10
 alpha <- 0.05
 distributions <- c("normal", "heavy_tail", "skewed")
 methods <- c("t", "rank", "permutation")
