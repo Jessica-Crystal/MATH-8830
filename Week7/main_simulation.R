@@ -56,4 +56,4 @@ results <- results |>
     method, pvalue, -(n:contamination), -rep_id
   )
 save(results, file="results.RData")
-
+load("results.RData")

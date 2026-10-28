@@ -30,3 +30,63 @@ methods <- c("t", "rank", "permutation")
 sapply(methods, function(method){
   two_sample_test(mydata$x, mydata$y, method=method)
 })
+ #################################
+# exam: lab 3 and lab 4
+# and data manipulation
+#################################
+library(tidyverse)
+# load Simualtion results
+alpha <- 0.05
+# H0: true mean difference=0
+# H1: true mean difference#0
+# difference=0. H0 is true 
+# Reject H0: type I error 
+# Control type I under alpha=0.05
+
+# difference=1: H1 is true
+# proba of reject H0: power 
+
+# Measurement:
+# number of rejection/number of test 
+#
+
+results_agg <- results |>
+  group_by(
+    n,
+    difference,
+    distribution,
+    contamination,
+    method
+  )|>
+  summarize(
+    p_rej = mean(pvalue <= alpha),
+    .groups = "drop"
+  )
+
+# difference=0
+# type I error (p_rej)
+
+results_agg |> 
+  filter(
+    difference == 0
+  ) |>
+  ggplot(aes(x = paste("n=",n), y = p_rej)) + 
+  geom_bar(stat="identity", position="dodge",
+           aes(fill=method))+
+  facet_grid(distribution~contamination)+
+  xlab(" ")+
+  ylab("Type I error")
+
+# difference=1
+# power 
+
+results_agg |> 
+  filter(
+    difference == 1
+  ) |>
+  ggplot(aes(x = paste("n=",n), y = p_rej)) + 
+  geom_bar(stat="identity", position="dodge",
+           aes(fill=method))+
+  facet_grid(distribution~contamination)+
+  xlab(" ")+
+  ylab("Power")
